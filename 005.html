@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataLoad</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <div class="canvas"></div>
+    <script>
+        const canvas = d3.select('.canvas');
+        console.log(d3.csv('data/data2.csv'));
+
+        //json
+        //console.log(d3.json(url));
+        //xml 방식 확인 => node 가져오듯이 사용해야한다.
+
+        // 추가 방법 예시
+        // d3.csv('data/data1.csv')
+        // .then(function(data){
+        //     //throw new Error("new error");
+        //     console.log(data);
+
+        //     const svg = canvas.append('.svg')
+        //     .attr('height', 2000)
+        //     .attr('width', 2000);
+        // })
+        // .catch(e => console.error(e));
+
+
+        d3.csv('data/data2.csv')
+        .then(function(data){
+            //throw new Error("new error");
+            console.log(data);
+
+            const svg = canvas.append('svg')
+            .attr('height', 2000)
+            .attr('width', 2000);
+       
+            data.forEach(data => {
+            svg.append('circle')
+            .attr('cx', (data.위도 - 33.1)*1600 + 10) //2000 퍼져있게 보이기 위해
+            .attr('cy', (data.경도 - 126)*300 + 10)
+            .attr('r', 5)
+            .attr('fill', 'pink')
+        });
+        })
+        .catch(e => console.error(e));
+
+       
+
+    </script>
+</body>
+</html>

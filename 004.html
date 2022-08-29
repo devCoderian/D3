@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <svg id='sample1'>
+        <circle></circle>
+        <circle></circle>
+    </svg>
+    <hr>
+    <svg id='sample2'>
+        <circle></circle>
+        <circle></circle>
+        <circle></circle>
+        <circle></circle>
+        <circle></circle>
+        <circle></circle>
+        <circle></circle>
+        <circle></circle>
+    </svg>
+     <script>
+
+        let sampleData01 = [
+            [5, 20, 30, '#ff0000'],
+            [5, 320, 90, '#ff0000'],
+            [5, 150, 50, '#ff0000'],
+            [7, 410, 20, '#ff0000'], 
+            [12, 720, 60, '#ff0000'], 
+            [12, 30, 110, '#ff0000'], 
+            [12, 90, 130, '#ff0000'], 
+            [19, 510, 180, '#ff0000'],
+            [19, 310, 120, '#ff0000'],
+        ];
+
+        let sampleData02 = [
+            [5, 20, 30, '#ff0000'],
+            [5, 320, 90, '#ff0000'],
+            [5, 150, 50, '#ff0000']
+        ];
+
+        const svg = d3.select('#sample1').attr('width', 1000).attr('height', 1000);
+
+        svg.selectAll('circle')
+        .data(sampleData01)
+        .enter() //enter(데이터 수 => dom 요소), update(재적용, 화면 갱신), exit(데이터 수 < dom 요소)
+        .append('circle')
+        .attr('r', d => d[0])
+        .attr('cx', d => d[1])
+        .attr('cy', d => d[2])
+        .attr('fill', d => d[3])
+        .enter() // 채워넣기
+        .append('circle') //
+        .attr('r', d => d[0])
+        .attr('cx', d => d[1])
+        .attr('cy', d => d[2])
+        .attr('fill', d => d[3]);        
+
+        // exit() : data가 기존 html 요소의 수보다 적을 때는, exit을 사용해서 남은 요소를 선택 후 remove를 사용해 제거
+
+        const scatter2 = d3.select('#sample2')
+                            .attr('width', 1000)
+                            .attr('height', 300)
+        
+        scatter2.selectAll('circle')
+            .data(sampleData02)
+            .attr('r', d => d[0])
+            .attr('cx', d => d[1])
+            .attr('cy', d => d[2])
+            .attr('fill', d => d[3])
+            .exit()
+            .remove()
+
+    
+     </script>
+</body>
+</html>

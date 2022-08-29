@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScalePoint(데이터 컨트롤)</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <script>
+        //range는 전체 width
+        //domain 전체 count를 range 값으로 동일하게 분할
+        const f1 = d3.scalePoint().range([10, 100])
+        .domain([10, 12, 20, 50, 70]);
+
+        console.log(f1(40));
+
+        const f2 = d3.scalePoint().range([10, 100])
+        .domain(['a', 'b', 'c', 'd']);
+
+        console.log(f2('a'));
+
+        //padding을 붙였을 경우 각 요소의 간격에 padding을 곱해서 양쪽 여백을 준다.
+        const f3 = d3.scalePoint().range([100, 200])
+        .domain(['a', 'b', 'c', 'd']).padding(0.3); //
+
+        console.log(f3('a'));
+        
+        /* range 는 변환 후의 값 domian은 변환 전의 값 */
+        // scalePont(간격에 맞게 값 변경, x좌표로 많이 쓴다.) VS scaleLinear(비율만큼 변환해준 값, y좌표로 많이 쓴다.)// 리서치 필요
+        const scale = d3.scaleLinear().range([0, 100]).domain([0, 500]);
+        console.log(scale(250))
+
+        crayons = d3.scaleLinear()
+        .domain([-1, 0, 1])
+        .range(["orange", "white", "green"]);
+        
+        console.log(black(0.5));
+        console.log(crayons(0.3)); //rgb 표기
+        
+        const f = d3.scaleLinear().range([200, 500]).domian([20000000, 50000000]);
+
+        const scaleBand = d3.scaleBand().domain(['one', 'two', 'three', 'four']).range([0, 100]);
+
+        console.log(scaleBand('one'))
+        console.log(scaleBand('two'))
+        console.log(scaleBand('three'))
+        console.log(scaleBand('four'))
+
+        console.log(scaleBand.bandWidth());
+
+    </script>
+</body>
+</html>

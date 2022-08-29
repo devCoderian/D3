@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScalePoint(데이터 컨트롤)</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <script>
+        let data = [10, 20, 30];
+        let data2 = [{
+            age: 10,
+            power: 3000,
+        },
+        {
+            age: 20,
+            power: 3000,
+        },
+        {
+            age: 30,
+            power: 1000,
+        }];
+
+        const min1 = d3.min(data);
+        const min2 = d3.min(data2, d => d.age);
+        const max = d3.max(data2, d => d.power);
+        const extent1 = d3.extent1(data);
+        const extent2 = d3.extent1(data2, d => d.power);
+        
+        console.log(extent1, extent2); //min과 max를 출력한다.
+        
+        let [a, b] = d3.extent(data); //min max
+        console.log(a, b);
+
+        //평균
+        const mean = d3.mean(data);
+        console.log(mean);
+
+        
+
+    </script>
+</body>
+</html>
